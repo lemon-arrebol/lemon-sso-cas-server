@@ -49,6 +49,9 @@ repositories {
 apply plugin: 'org.springframework.boot'
 // 应用依赖管理插件，自动给Spring依赖的第三方模块追加版本号
 apply plugin: 'io.spring.dependency-management'
+
+apply from: rootProject.file("gradle/overrides.gradle")
+apply from: rootProject.file("gradle/dependencies.gradle")
 // ================== 导入使用的插件 ==================
 
 // jar包的group ，version配置
@@ -58,14 +61,36 @@ apply plugin: 'io.spring.dependency-management'
 // jdk编译版本
 sourceCompatibility = 1.11
 
-/*
- * allprojects声明的却是所有module所需要使用的资源，就是说你的每个module都需要用同一个第三库的时候，可以在allprojects里面声明。
- */
-allprojects {
-
+configurations {
+    // 编译期排除appcompat-v7
+//    compile.exclude module: 'appcompat-v7'
+    // 在整个构建过程中排除com.android.support：appcompat-v7
+//    all*.exclude group: 'org.codehaus.groovy', module: 'groovy-jsr223'
 }
 
-// subprojects是对所有Child Project的配置
+// 全局配置强制使用某个统一版本的依赖
+//configurations.all {
+//    resolutionStrategy {
+//        force "org.codehaus.groovy:groovy-jsr223:${project.groovyVersion}"
+//        force "org.codehaus.groovy:groovy-json:${project.groovyVersion}"
+//        force "org.codehaus.groovy:groovy-xml:${project.groovyVersion}"
+//        force "org.codehaus.groovy:groovy:${project.groovyVersion}"
+//        force "org.codehaus.groovy:groovy-datetime:${project.groovyVersion}"
+//        force "org.codehaus.groovy:groovy-sql:${project.groovyVersion}"
+//        force "org.codehaus.groovy:groovy-groovysh:${project.groovyVersion}"
+//    }
+//}
+
+/*
+ * allprojects 声明的却是所有module所需要使用的资源，就是说你的每个module都需要用同一个第三库的时候，可以在allprojects里面声明。
+ */
+allprojects {
+    ext.libraries = rootProject.ext.libraries
+}
+
+/*
+ * subprojects是对所有Child Project的配置
+ */
 subprojects {
 
 }
@@ -75,38 +100,55 @@ dependencies {
     // runtime runtime依赖在运行和测试系统的时候需要，但在编译的时候不需要
     // testCompile 测试期编译需要的附加依赖
     // testRuntime 测试运行期需要
+
     // ================== by developer lemon apereo common ==================
     compile "org.projectlombok:lombok:${project.lombokVersion}"
-    // Spring依赖的第三方模块(2.1.6依赖的是3.8.1)
+//    // Spring依赖的第三方模块(2.1.6依赖的是3.8.1)
     compile("org.apache.commons:commons-lang3")
+    compile "mysql:mysql-connector-java:8.0.16"
 
     // ================== by developer lemon apereo cas ==================
-//    compile "org.apereo.cas:cas-server-webapp:${project.casServerVersion}"
-//    compile "org.apereo.cas:cas-server-webapp${project.appServer}:${project.casServerVersion}"
-//    compile "org.apereo.cas:cas-server-core-api:${project.casServerVersion}"
-//    compile "org.apereo.cas:cas-server-core-tickets-api:${project.casServerVersion}"
-//    compile "org.apereo.cas:cas-server-core-authentication-api:${project.casServerVersion}"
-//    compile "org.apereo.cas:cas-server-core-configuration-api:${project.casServerVersion}"
-//    compile "org.apereo.cas:cas-server-core-cookie-api:${project.casServerVersion}"
-//    compile "org.apereo.cas:cas-server-support-oauth:${project.casServerVersion}"
-//    compile "org.apereo.cas:cas-server-support-oauth-webflow:${project.casServerVersion}"
-//    compile "org.apereo.cas:cas-server-support-jdbc:${project.casServerVersion}"
+    // 参考 Apereo CAS gradle/webapp.gradle
+//    compile "org.apereo.cas:cas-server-core:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-core-audit:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-core-authentication:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-core-configuration:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-core-cookie:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-core-logout:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-core-logging:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-core-services:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-core-tickets:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-core-util:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-core-validation:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-core-web:${project.casServerVersion}"
+
+    compile "org.apereo.cas:cas-server-support-actions:${project.casServerVersion}"
+    // Service 即注册的 Cas Client 查询，验证请求的 Cas Client 是是否合法
+//    compile "org.apereo.cas:cas-server-support-jpa-service-registry:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-support-person-directory:${project.casServerVersion}"
+    // Conflicting module versions. Module [groovy-datetime is loaded in version 3.0.0-rc-1 and you are trying to load version 2.5.8
 //    compile "org.apereo.cas:cas-server-support-redis-ticket-registry:${project.casServerVersion}"
-    compile "mysql:mysql-connector-java:8.0.16"
+    compile "org.apereo.cas:cas-server-support-themes:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-support-validation:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-support-pm-webflow:${project.casServerVersion}"
+
+    compile "org.apereo.cas:cas-server-webapp-config:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-webapp-init:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-webapp-resources:${project.casServerVersion}"
+
+    compile "org.apereo.cas:cas-server-webapp${project.appServer}:${project.casServerVersion}"
+
+    // 添加对log4j starter的依赖。
+    compile "org.springframework.boot:spring-boot-starter-log4j:${project.springBootLog4jVersion}"
 
     compile("org.springframework.boot:spring-boot-starter-jdbc:${project.springBootVersion}") {
         exclude group: 'org.apache.logging.log4j'
     }
 
-    compile("org.apereo.cas:cas-server-support-redis-ticket-registry:${project.casServerVersion}") {
-        exclude group: 'org.codehaus.groovy'
-        exclude group: 'org.apache.logging.log4j'
-    }
-
-    // Service 即注册的 Cas Client 查询，验证请求的 Cas Client 是是否合法
-    compile("org.apereo.cas:cas-server-support-jpa-service-registry:${project.casServerVersion}") {
-        exclude group: 'org.codehaus.groovy'
-    }
+//    compile("org.codehaus.groovy:groovy-jsr223:${project.groovyVersion}") {
+//        exclude(group: "commons-cli", module: "commons-cli")
+//        force = true
+//    }
 
     // 配置 mybatis
 //    compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:${project.mybatisSpringBootVersion}")
@@ -118,9 +160,6 @@ dependencies {
 //    }
 
 //    compile "com.github.pagehelper:pagehelper-spring-boot-starter:${project.pagehelperSpringBootVersion}"
-
-    // 添加对log4j starter的依赖。
-    compile "org.springframework.boot:spring-boot-starter-log4j:${project.springBootLog4jVersion}"
 
 //    testCompile group: 'junit', name: 'junit', version: '4.12'
 }

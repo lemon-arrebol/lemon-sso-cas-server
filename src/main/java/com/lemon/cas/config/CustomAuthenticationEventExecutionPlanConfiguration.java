@@ -8,11 +8,15 @@ import org.apereo.cas.authentication.AuthenticationEventExecutionPlan;
 import org.apereo.cas.authentication.AuthenticationEventExecutionPlanConfigurer;
 import org.apereo.cas.authentication.AuthenticationHandler;
 import org.apereo.cas.authentication.principal.DefaultPrincipalFactory;
+import org.apereo.cas.config.CasCoreAuthenticationHandlersConfiguration;
 import org.apereo.cas.services.ServicesManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.util.Assert;
 
 import javax.sql.DataSource;
@@ -20,11 +24,14 @@ import javax.sql.DataSource;
 /**
  * @author lemon
  * @description
+ * @Import({DataSourceAutoConfiguration.class}) 加载 DataSource
  * @date 2020-05-14 20:05
  */
 @Slf4j
 @Configuration("customAuthenticationEventExecutionPlanConfiguration")
 @EnableConfigurationProperties(CustomCasConfigurationProperties.class)
+@Import({DataSourceAutoConfiguration.class})
+@AutoConfigureAfter(CasCoreAuthenticationHandlersConfiguration.class)
 public class CustomAuthenticationEventExecutionPlanConfiguration implements AuthenticationEventExecutionPlanConfigurer {
     @Autowired
     private DataSource dataSource;

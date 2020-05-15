@@ -29,7 +29,7 @@ public class UserBaseInfoServiceImpl implements UserBaseInfoService {
 
     @Override
     public UserBaseInfoEntity selectByUserName(String userName) {
-        return (UserBaseInfoEntity) this.jdbcTemplate.queryForObject(this.querUserSql, new Object[]{userName}, new BeanPropertyRowMapper(UserBaseInfoEntity.class));
+        return (UserBaseInfoEntity) this.jdbcTemplate.query(this.querUserSql, new Object[]{userName}, new BeanPropertyRowMapper(UserBaseInfoEntity.class)).get(0);
     }
 
 }

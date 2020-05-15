@@ -76,9 +76,8 @@ public class CustomAuthenticationHandler extends AbstractPreAndPostProcessingAut
         transformPassword(userPass);
 
         UserBaseInfoEntity userBaseInfoEntity = this.userBaseInfoService.selectByUserName(userPass.getUsername());
-        System.out.println("========" + userBaseInfoEntity);
 
-        if (!this.matches(userPass.getPassword(), userPass.getPassword())) {
+        if (!this.matches(userPass.getPassword(), userBaseInfoEntity.getPassword())) {
             throw new FailedLoginException();
         }
 

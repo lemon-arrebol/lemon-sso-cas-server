@@ -1,5 +1,5 @@
 lemon:
-  quer-user-sql: select * from t_iam_user_base_info where f_user_name = ?
+  quer-user-sql: select f_user_name, f_password from user_base_info where f_user_name = ?
   ticket:
     tgtSuffix: tgt
     pgtSuffix: pgt
@@ -77,10 +77,10 @@ cas:
         timeout: 2000
         use-ssl: false
   # CAS Authentication Credentials
-  authn:
-    accept:
-      name: Static Credentials
-      users: casuser::Mellon
+#  authn:
+#    accept:
+#      name: Static Credentials
+#      users: casuser::Mellon
   # CAS View Settings
   view:
     cas2:
@@ -207,7 +207,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/iam_db?characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/cas_user?characterEncoding=utf8
     username: root
     password: mcdull
     # hikari 连接池配置
