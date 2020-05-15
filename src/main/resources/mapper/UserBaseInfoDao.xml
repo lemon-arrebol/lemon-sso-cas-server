@@ -1,0 +1,1559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lemon.cas.mapper.UserBaseInfoMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.lemon.cas.entity.UserBaseInfoEntity" id="BaseResultMap">
+        <result property="fId" column="f_id"/>
+        <result property="fUserName" column="f_user_name"/>
+        <result property="fProductGroup" column="f_product_group"/>
+        <result property="fStatus" column="f_status"/>
+        <result property="fPassword" column="f_password"/>
+        <result property="fMobile" column="f_mobile"/>
+        <result property="fEmployId" column="f_employ_id"/>
+        <result property="fShorthand" column="f_shorthand"/>
+        <result property="fRealName" column="f_real_name"/>
+        <result property="fUcId" column="f_uc_id"/>
+        <result property="fGlobalName" column="f_global_name"/>
+        <result property="fMail" column="f_mail"/>
+        <result property="fOrgId" column="f_org_id"/>
+        <result property="fCompany" column="f_company"/>
+        <result property="fType" column="f_type"/>
+        <result property="fJobLevel" column="f_job_level"/>
+        <result property="fMurphyId" column="f_murphy_id"/>
+        <result property="fPsId" column="f_ps_id"/>
+        <result property="fAdDn" column="f_ad_dn"/>
+        <result property="fDesc" column="f_desc"/>
+        <result property="fLastLoginDate" column="f_last_login_date"/>
+        <result property="fLastLoginIp" column="f_last_login_ip"/>
+        <result property="fCreatedDate" column="f_created_date"/>
+        <result property="fCreatorId" column="f_creator_id"/>
+        <result property="fModifierId" column="f_modifier_id"/>
+        <result property="fModifiedDate" column="f_modified_date"/>
+        <result property="fEffectiveDate" column="f_effective_date"/>
+        <result property="fExpiryDate" column="f_expiry_date"/>
+        <result property="fMobileStatus" column="f_mobile_status"/>
+        <result property="fMailStatus" column="f_mail_status"/>
+        <result property="fDeptId" column="f_dept_id"/>
+        <result property="fRegionId" column="f_region_id"/>
+        <result property="fExternalModifiedDate" column="f_external_modified_date"/>
+        <result property="fEntryModifiedDate" column="f_entry_modified_date"/>
+        <result property="fOrigin" column="f_origin"/>
+        <result property="fCompanyName" column="f_company_name"/>
+        <result property="fLineManagerId" column="f_line_manager_id"/>
+        <result property="fManagerId" column="f_manager_id"/>
+    </resultMap>
+
+    <!--
+          选择性插入
+        -->
+    <sql id="Base_Insert_Selective">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fId != null">
+                f_id,
+            </if>
+            <if test="fUserName != null">
+                f_user_name,
+            </if>
+            <if test="fProductGroup != null">
+                f_product_group,
+            </if>
+            <if test="fStatus != null">
+                f_status,
+            </if>
+            <if test="fPassword != null">
+                f_password,
+            </if>
+            <if test="fMobile != null">
+                f_mobile,
+            </if>
+            <if test="fEmployId != null">
+                f_employ_id,
+            </if>
+            <if test="fShorthand != null">
+                f_shorthand,
+            </if>
+            <if test="fRealName != null">
+                f_real_name,
+            </if>
+            <if test="fUcId != null">
+                f_uc_id,
+            </if>
+            <if test="fGlobalName != null">
+                f_global_name,
+            </if>
+            <if test="fMail != null">
+                f_mail,
+            </if>
+            <if test="fOrgId != null">
+                f_org_id,
+            </if>
+            <if test="fCompany != null">
+                f_company,
+            </if>
+            <if test="fType != null">
+                f_type,
+            </if>
+            <if test="fJobLevel != null">
+                f_job_level,
+            </if>
+            <if test="fMurphyId != null">
+                f_murphy_id,
+            </if>
+            <if test="fPsId != null">
+                f_ps_id,
+            </if>
+            <if test="fAdDn != null">
+                f_ad_dn,
+            </if>
+            <if test="fDesc != null">
+                f_desc,
+            </if>
+            <if test="fLastLoginDate != null">
+                f_last_login_date,
+            </if>
+            <if test="fLastLoginIp != null">
+                f_last_login_ip,
+            </if>
+            <if test="fCreatedDate != null">
+                f_created_date,
+            </if>
+            <if test="fCreatorId != null">
+                f_creator_id,
+            </if>
+            <if test="fModifierId != null">
+                f_modifier_id,
+            </if>
+            <if test="fModifiedDate != null">
+                f_modified_date,
+            </if>
+            <if test="fEffectiveDate != null">
+                f_effective_date,
+            </if>
+            <if test="fExpiryDate != null">
+                f_expiry_date,
+            </if>
+            <if test="fMobileStatus != null">
+                f_mobile_status,
+            </if>
+            <if test="fMailStatus != null">
+                f_mail_status,
+            </if>
+            <if test="fDeptId != null">
+                f_dept_id,
+            </if>
+            <if test="fRegionId != null">
+                f_region_id,
+            </if>
+            <if test="fExternalModifiedDate != null">
+                f_external_modified_date,
+            </if>
+            <if test="fEntryModifiedDate != null">
+                f_entry_modified_date,
+            </if>
+            <if test="fOrigin != null">
+                f_origin,
+            </if>
+            <if test="fCompanyName != null">
+                f_company_name,
+            </if>
+            <if test="fLineManagerId != null">
+                f_line_manager_id,
+            </if>
+            <if test="fManagerId != null">
+                f_manager_id
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fId != null">
+                #{fId,jdbcType=VARCHAR},
+            </if>
+            <if test="fUserName != null">
+                #{fUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="fProductGroup != null">
+                #{fProductGroup,jdbcType=VARCHAR},
+            </if>
+            <if test="fStatus != null">
+                #{fStatus,jdbcType=BIT},
+            </if>
+            <if test="fPassword != null">
+                #{fPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="fMobile != null">
+                #{fMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="fEmployId != null">
+                #{fEmployId,jdbcType=VARCHAR},
+            </if>
+            <if test="fShorthand != null">
+                #{fShorthand,jdbcType=VARCHAR},
+            </if>
+            <if test="fRealName != null">
+                #{fRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="fUcId != null">
+                #{fUcId,jdbcType=VARCHAR},
+            </if>
+            <if test="fGlobalName != null">
+                #{fGlobalName,jdbcType=VARCHAR},
+            </if>
+            <if test="fMail != null">
+                #{fMail,jdbcType=VARCHAR},
+            </if>
+            <if test="fOrgId != null">
+                #{fOrgId,jdbcType=VARCHAR},
+            </if>
+            <if test="fCompany != null">
+                #{fCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="fType != null">
+                #{fType,jdbcType=BIT},
+            </if>
+            <if test="fJobLevel != null">
+                #{fJobLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="fMurphyId != null">
+                #{fMurphyId,jdbcType=BIGINT},
+            </if>
+            <if test="fPsId != null">
+                #{fPsId,jdbcType=VARCHAR},
+            </if>
+            <if test="fAdDn != null">
+                #{fAdDn,jdbcType=VARCHAR},
+            </if>
+            <if test="fDesc != null">
+                #{fDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="fLastLoginDate != null">
+                #{fLastLoginDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fLastLoginIp != null">
+                #{fLastLoginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="fCreatedDate != null">
+                #{fCreatedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fCreatorId != null">
+                #{fCreatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="fModifierId != null">
+                #{fModifierId,jdbcType=VARCHAR},
+            </if>
+            <if test="fModifiedDate != null">
+                #{fModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fEffectiveDate != null">
+                #{fEffectiveDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fExpiryDate != null">
+                #{fExpiryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fMobileStatus != null">
+                #{fMobileStatus,jdbcType=BIT},
+            </if>
+            <if test="fMailStatus != null">
+                #{fMailStatus,jdbcType=BIT},
+            </if>
+            <if test="fDeptId != null">
+                #{fDeptId,jdbcType=VARCHAR},
+            </if>
+            <if test="fRegionId != null">
+                #{fRegionId,jdbcType=VARCHAR},
+            </if>
+            <if test="fExternalModifiedDate != null">
+                #{fExternalModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fEntryModifiedDate != null">
+                #{fEntryModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fOrigin != null">
+                #{fOrigin,jdbcType=VARCHAR},
+            </if>
+            <if test="fCompanyName != null">
+                #{fCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="fLineManagerId != null">
+                #{fLineManagerId,jdbcType=VARCHAR},
+            </if>
+            <if test="fManagerId != null">
+                #{fManagerId,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </sql>
+
+    <!--
+      数据库表的基本查询列名集合
+    -->
+    <sql id="Base_Column_List">
+        f_id, f_user_name, f_product_group, f_status, f_password, f_mobile, f_employ_id, f_shorthand, f_real_name,
+        f_uc_id, f_global_name, f_mail, f_org_id, f_company, f_type, f_job_level, f_murphy_id, f_ps_id, f_ad_dn, f_desc,
+        f_last_login_date, f_last_login_ip, f_created_date, f_creator_id, f_modifier_id, f_modified_date,
+        f_effective_date, f_expiry_date, f_mobile_status, f_mail_status, f_dept_id, f_region_id,
+        f_external_modified_date, f_entry_modified_date, f_origin, f_company_name, f_line_manager_id, f_manager_id
+    </sql>
+
+    <!--
+        Where子句
+      -->
+    <sql id="Base_Query_Where">
+        <if test="fId != null">
+            and f_id = #{fId,jdbcType=VARCHAR}
+        </if>
+        <if test="fUserName != null">
+            and f_user_name = #{fUserName,jdbcType=VARCHAR}
+        </if>
+        <if test="fProductGroup != null">
+            and f_product_group = #{fProductGroup,jdbcType=VARCHAR}
+        </if>
+        <if test="fStatus != null">
+            and f_status = #{fStatus,jdbcType=BIT}
+        </if>
+        <if test="fPassword != null">
+            and f_password = #{fPassword,jdbcType=VARCHAR}
+        </if>
+        <if test="fMobile != null">
+            and f_mobile = #{fMobile,jdbcType=VARCHAR}
+        </if>
+        <if test="fEmployId != null">
+            and f_employ_id = #{fEmployId,jdbcType=VARCHAR}
+        </if>
+        <if test="fShorthand != null">
+            and f_shorthand = #{fShorthand,jdbcType=VARCHAR}
+        </if>
+        <if test="fRealName != null">
+            and f_real_name = #{fRealName,jdbcType=VARCHAR}
+        </if>
+        <if test="fUcId != null">
+            and f_uc_id = #{fUcId,jdbcType=VARCHAR}
+        </if>
+        <if test="fGlobalName != null">
+            and f_global_name = #{fGlobalName,jdbcType=VARCHAR}
+        </if>
+        <if test="fMail != null">
+            and f_mail = #{fMail,jdbcType=VARCHAR}
+        </if>
+        <if test="fOrgId != null">
+            and f_org_id = #{fOrgId,jdbcType=VARCHAR}
+        </if>
+        <if test="fCompany != null">
+            and f_company = #{fCompany,jdbcType=VARCHAR}
+        </if>
+        <if test="fType != null">
+            and f_type = #{fType,jdbcType=BIT}
+        </if>
+        <if test="fJobLevel != null">
+            and f_job_level = #{fJobLevel,jdbcType=VARCHAR}
+        </if>
+        <if test="fMurphyId != null">
+            and f_murphy_id = #{fMurphyId,jdbcType=BIGINT}
+        </if>
+        <if test="fPsId != null">
+            and f_ps_id = #{fPsId,jdbcType=VARCHAR}
+        </if>
+        <if test="fAdDn != null">
+            and f_ad_dn = #{fAdDn,jdbcType=VARCHAR}
+        </if>
+        <if test="fDesc != null">
+            and f_desc = #{fDesc,jdbcType=VARCHAR}
+        </if>
+        <if test="fLastLoginDate != null">
+            and f_last_login_date = #{fLastLoginDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="fLastLoginIp != null">
+            and f_last_login_ip = #{fLastLoginIp,jdbcType=VARCHAR}
+        </if>
+        <if test="fCreatedDate != null">
+            and f_created_date = #{fCreatedDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="fCreatorId != null">
+            and f_creator_id = #{fCreatorId,jdbcType=VARCHAR}
+        </if>
+        <if test="fModifierId != null">
+            and f_modifier_id = #{fModifierId,jdbcType=VARCHAR}
+        </if>
+        <if test="fModifiedDate != null">
+            and f_modified_date = #{fModifiedDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="fEffectiveDate != null">
+            and f_effective_date = #{fEffectiveDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="fExpiryDate != null">
+            and f_expiry_date = #{fExpiryDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="fMobileStatus != null">
+            and f_mobile_status = #{fMobileStatus,jdbcType=BIT}
+        </if>
+        <if test="fMailStatus != null">
+            and f_mail_status = #{fMailStatus,jdbcType=BIT}
+        </if>
+        <if test="fDeptId != null">
+            and f_dept_id = #{fDeptId,jdbcType=VARCHAR}
+        </if>
+        <if test="fRegionId != null">
+            and f_region_id = #{fRegionId,jdbcType=VARCHAR}
+        </if>
+        <if test="fExternalModifiedDate != null">
+            and f_external_modified_date = #{fExternalModifiedDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="fEntryModifiedDate != null">
+            and f_entry_modified_date = #{fEntryModifiedDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="fOrigin != null">
+            and f_origin = #{fOrigin,jdbcType=VARCHAR}
+        </if>
+        <if test="fCompanyName != null">
+            and f_company_name = #{fCompanyName,jdbcType=VARCHAR}
+        </if>
+        <if test="fLineManagerId != null">
+            and f_line_manager_id = #{fLineManagerId,jdbcType=VARCHAR}
+        </if>
+        <if test="fManagerId != null">
+            and f_manager_id = #{fManagerId,jdbcType=VARCHAR}
+        </if>
+    </sql>
+
+    <!--
+        基本更新字段
+    -->
+    <sql id="Base_Update_Column">
+        <set>
+            <if test="fId != null">
+                f_id = #{fId,jdbcType=VARCHAR},
+            </if>
+            <if test="fUserName != null">
+                f_user_name = #{fUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="fProductGroup != null">
+                f_product_group = #{fProductGroup,jdbcType=VARCHAR},
+            </if>
+            <if test="fStatus != null">
+                f_status = #{fStatus,jdbcType=BIT},
+            </if>
+            <if test="fPassword != null">
+                f_password = #{fPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="fMobile != null">
+                f_mobile = #{fMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="fEmployId != null">
+                f_employ_id = #{fEmployId,jdbcType=VARCHAR},
+            </if>
+            <if test="fShorthand != null">
+                f_shorthand = #{fShorthand,jdbcType=VARCHAR},
+            </if>
+            <if test="fRealName != null">
+                f_real_name = #{fRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="fUcId != null">
+                f_uc_id = #{fUcId,jdbcType=VARCHAR},
+            </if>
+            <if test="fGlobalName != null">
+                f_global_name = #{fGlobalName,jdbcType=VARCHAR},
+            </if>
+            <if test="fMail != null">
+                f_mail = #{fMail,jdbcType=VARCHAR},
+            </if>
+            <if test="fOrgId != null">
+                f_org_id = #{fOrgId,jdbcType=VARCHAR},
+            </if>
+            <if test="fCompany != null">
+                f_company = #{fCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="fType != null">
+                f_type = #{fType,jdbcType=BIT},
+            </if>
+            <if test="fJobLevel != null">
+                f_job_level = #{fJobLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="fMurphyId != null">
+                f_murphy_id = #{fMurphyId,jdbcType=BIGINT},
+            </if>
+            <if test="fPsId != null">
+                f_ps_id = #{fPsId,jdbcType=VARCHAR},
+            </if>
+            <if test="fAdDn != null">
+                f_ad_dn = #{fAdDn,jdbcType=VARCHAR},
+            </if>
+            <if test="fDesc != null">
+                f_desc = #{fDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="fLastLoginDate != null">
+                f_last_login_date = #{fLastLoginDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fLastLoginIp != null">
+                f_last_login_ip = #{fLastLoginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="fCreatedDate != null">
+                f_created_date = #{fCreatedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fCreatorId != null">
+                f_creator_id = #{fCreatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="fModifierId != null">
+                f_modifier_id = #{fModifierId,jdbcType=VARCHAR},
+            </if>
+            <if test="fModifiedDate != null">
+                f_modified_date = #{fModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fEffectiveDate != null">
+                f_effective_date = #{fEffectiveDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fExpiryDate != null">
+                f_expiry_date = #{fExpiryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fMobileStatus != null">
+                f_mobile_status = #{fMobileStatus,jdbcType=BIT},
+            </if>
+            <if test="fMailStatus != null">
+                f_mail_status = #{fMailStatus,jdbcType=BIT},
+            </if>
+            <if test="fDeptId != null">
+                f_dept_id = #{fDeptId,jdbcType=VARCHAR},
+            </if>
+            <if test="fRegionId != null">
+                f_region_id = #{fRegionId,jdbcType=VARCHAR},
+            </if>
+            <if test="fExternalModifiedDate != null">
+                f_external_modified_date = #{fExternalModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fEntryModifiedDate != null">
+                f_entry_modified_date = #{fEntryModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fOrigin != null">
+                f_origin = #{fOrigin,jdbcType=VARCHAR},
+            </if>
+            <if test="fCompanyName != null">
+                f_company_name = #{fCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="fLineManagerId != null">
+                f_line_manager_id = #{fLineManagerId,jdbcType=VARCHAR},
+            </if>
+            <if test="fManagerId != null">
+                f_manager_id = #{fManagerId,jdbcType=VARCHAR}
+            </if>
+        </set>
+    </sql>
+
+    <!--
+        分页查询数据库表
+      -->
+    <select id="selectPaged" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_iam_user_base_info
+    </select>
+
+    <!--
+      根据主键查询数据库表
+    -->
+    <select id="selectByPrimaryKey" parameterType="${pk.attrTypePath}" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_iam_user_base_info
+        where f_id = #{fId,jdbcType=VARCHAR}
+    </select>
+
+
+    <!--
+      根据主键删除数据库表中的记录
+    -->
+    <delete id="deleteByPrimaryKey" parameterType="${pk.attrTypePath}">
+        delete FROM t_iam_user_base_info
+        where f_id = #{fId,jdbcType=VARCHAR}
+    </delete>
+
+    <!--
+      添加一条记录到数据库表中
+    -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"
+            parameterType="null.UserBaseInfoPo">
+        insert into t_iam_user_base_info
+        (<include refid="Base_Column_List"/>)
+        values (
+        <if test="fId != null">
+            #{fId,jdbcType=VARCHAR},
+        </if>
+        <if test="fUserName != null">
+            #{fUserName,jdbcType=VARCHAR},
+        </if>
+        <if test="fProductGroup != null">
+            #{fProductGroup,jdbcType=VARCHAR},
+        </if>
+        <if test="fStatus != null">
+            #{fStatus,jdbcType=BIT},
+        </if>
+        <if test="fPassword != null">
+            #{fPassword,jdbcType=VARCHAR},
+        </if>
+        <if test="fMobile != null">
+            #{fMobile,jdbcType=VARCHAR},
+        </if>
+        <if test="fEmployId != null">
+            #{fEmployId,jdbcType=VARCHAR},
+        </if>
+        <if test="fShorthand != null">
+            #{fShorthand,jdbcType=VARCHAR},
+        </if>
+        <if test="fRealName != null">
+            #{fRealName,jdbcType=VARCHAR},
+        </if>
+        <if test="fUcId != null">
+            #{fUcId,jdbcType=VARCHAR},
+        </if>
+        <if test="fGlobalName != null">
+            #{fGlobalName,jdbcType=VARCHAR},
+        </if>
+        <if test="fMail != null">
+            #{fMail,jdbcType=VARCHAR},
+        </if>
+        <if test="fOrgId != null">
+            #{fOrgId,jdbcType=VARCHAR},
+        </if>
+        <if test="fCompany != null">
+            #{fCompany,jdbcType=VARCHAR},
+        </if>
+        <if test="fType != null">
+            #{fType,jdbcType=BIT},
+        </if>
+        <if test="fJobLevel != null">
+            #{fJobLevel,jdbcType=VARCHAR},
+        </if>
+        <if test="fMurphyId != null">
+            #{fMurphyId,jdbcType=BIGINT},
+        </if>
+        <if test="fPsId != null">
+            #{fPsId,jdbcType=VARCHAR},
+        </if>
+        <if test="fAdDn != null">
+            #{fAdDn,jdbcType=VARCHAR},
+        </if>
+        <if test="fDesc != null">
+            #{fDesc,jdbcType=VARCHAR},
+        </if>
+        <if test="fLastLoginDate != null">
+            #{fLastLoginDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="fLastLoginIp != null">
+            #{fLastLoginIp,jdbcType=VARCHAR},
+        </if>
+        <if test="fCreatedDate != null">
+            #{fCreatedDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="fCreatorId != null">
+            #{fCreatorId,jdbcType=VARCHAR},
+        </if>
+        <if test="fModifierId != null">
+            #{fModifierId,jdbcType=VARCHAR},
+        </if>
+        <if test="fModifiedDate != null">
+            #{fModifiedDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="fEffectiveDate != null">
+            #{fEffectiveDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="fExpiryDate != null">
+            #{fExpiryDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="fMobileStatus != null">
+            #{fMobileStatus,jdbcType=BIT},
+        </if>
+        <if test="fMailStatus != null">
+            #{fMailStatus,jdbcType=BIT},
+        </if>
+        <if test="fDeptId != null">
+            #{fDeptId,jdbcType=VARCHAR},
+        </if>
+        <if test="fRegionId != null">
+            #{fRegionId,jdbcType=VARCHAR},
+        </if>
+        <if test="fExternalModifiedDate != null">
+            #{fExternalModifiedDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="fEntryModifiedDate != null">
+            #{fEntryModifiedDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="fOrigin != null">
+            #{fOrigin,jdbcType=VARCHAR},
+        </if>
+        <if test="fCompanyName != null">
+            #{fCompanyName,jdbcType=VARCHAR},
+        </if>
+        <if test="fLineManagerId != null">
+            #{fLineManagerId,jdbcType=VARCHAR},
+        </if>
+        <if test="fManagerId != null">
+            #{fManagerId,jdbcType=VARCHAR}
+        </if>
+        )
+    </insert>
+
+    <!--
+     有选择的添加一条记录到数据库表中
+   -->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id"
+            parameterType="null.UserBaseInfoPo">
+        insert into t_iam_user_base_info
+        <include refid="Base_Insert_Selective"/>
+    </insert>
+
+    <!--
+      有选择的可忽略添加一条记录到数据库表中
+    -->
+    <insert id="insertSelectiveIgnore" useGeneratedKeys="true" keyProperty="id"
+            parameterType="null.UserBaseInfoPo">
+        insert ignore into t_iam_user_base_info
+        <include refid="Base_Insert_Selective"/>
+    </insert>
+
+    <!--
+      根据主键有选择的更新数据库表
+    -->
+    <update id="updateByPrimaryKeySelective" parameterType="null.UserBaseInfoPo">
+        update t_iam_user_base_info
+        <include refid="Base_Update_Column"></include>
+        where f_id = #{fId,jdbcType=VARCHAR}
+    </update>
+
+
+    <!--
+      根据主键更新数据库表
+    -->
+    <update id="updateByPrimaryKey" parameterType="null.UserBaseInfoPo">
+        update t_iam_user_base_info
+        <set>
+            <if test="fId != null">
+                f_id = #{fId,jdbcType=VARCHAR},
+            </if>
+            <if test="fUserName != null">
+                f_user_name = #{fUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="fProductGroup != null">
+                f_product_group = #{fProductGroup,jdbcType=VARCHAR},
+            </if>
+            <if test="fStatus != null">
+                f_status = #{fStatus,jdbcType=BIT},
+            </if>
+            <if test="fPassword != null">
+                f_password = #{fPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="fMobile != null">
+                f_mobile = #{fMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="fEmployId != null">
+                f_employ_id = #{fEmployId,jdbcType=VARCHAR},
+            </if>
+            <if test="fShorthand != null">
+                f_shorthand = #{fShorthand,jdbcType=VARCHAR},
+            </if>
+            <if test="fRealName != null">
+                f_real_name = #{fRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="fUcId != null">
+                f_uc_id = #{fUcId,jdbcType=VARCHAR},
+            </if>
+            <if test="fGlobalName != null">
+                f_global_name = #{fGlobalName,jdbcType=VARCHAR},
+            </if>
+            <if test="fMail != null">
+                f_mail = #{fMail,jdbcType=VARCHAR},
+            </if>
+            <if test="fOrgId != null">
+                f_org_id = #{fOrgId,jdbcType=VARCHAR},
+            </if>
+            <if test="fCompany != null">
+                f_company = #{fCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="fType != null">
+                f_type = #{fType,jdbcType=BIT},
+            </if>
+            <if test="fJobLevel != null">
+                f_job_level = #{fJobLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="fMurphyId != null">
+                f_murphy_id = #{fMurphyId,jdbcType=BIGINT},
+            </if>
+            <if test="fPsId != null">
+                f_ps_id = #{fPsId,jdbcType=VARCHAR},
+            </if>
+            <if test="fAdDn != null">
+                f_ad_dn = #{fAdDn,jdbcType=VARCHAR},
+            </if>
+            <if test="fDesc != null">
+                f_desc = #{fDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="fLastLoginDate != null">
+                f_last_login_date = #{fLastLoginDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fLastLoginIp != null">
+                f_last_login_ip = #{fLastLoginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="fCreatedDate != null">
+                f_created_date = #{fCreatedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fCreatorId != null">
+                f_creator_id = #{fCreatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="fModifierId != null">
+                f_modifier_id = #{fModifierId,jdbcType=VARCHAR},
+            </if>
+            <if test="fModifiedDate != null">
+                f_modified_date = #{fModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fEffectiveDate != null">
+                f_effective_date = #{fEffectiveDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fExpiryDate != null">
+                f_expiry_date = #{fExpiryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fMobileStatus != null">
+                f_mobile_status = #{fMobileStatus,jdbcType=BIT},
+            </if>
+            <if test="fMailStatus != null">
+                f_mail_status = #{fMailStatus,jdbcType=BIT},
+            </if>
+            <if test="fDeptId != null">
+                f_dept_id = #{fDeptId,jdbcType=VARCHAR},
+            </if>
+            <if test="fRegionId != null">
+                f_region_id = #{fRegionId,jdbcType=VARCHAR},
+            </if>
+            <if test="fExternalModifiedDate != null">
+                f_external_modified_date = #{fExternalModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fEntryModifiedDate != null">
+                f_entry_modified_date = #{fEntryModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fOrigin != null">
+                f_origin = #{fOrigin,jdbcType=VARCHAR},
+            </if>
+            <if test="fCompanyName != null">
+                f_company_name = #{fCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="fLineManagerId != null">
+                f_line_manager_id = #{fLineManagerId,jdbcType=VARCHAR},
+            </if>
+            <if test="fManagerId != null">
+                f_manager_id = #{fManagerId,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where f_id = #{fId,jdbcType=VARCHAR}
+    </update>
+
+    <!--
+      批量添加记录到数据库表中
+    -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into t_iam_user_base_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            f_id, f_user_name, f_product_group, f_status, f_password, f_mobile, f_employ_id, f_shorthand, f_real_name,
+            f_uc_id, f_global_name, f_mail, f_org_id, f_company, f_type, f_job_level, f_murphy_id, f_ps_id, f_ad_dn,
+            f_desc, f_last_login_date, f_last_login_ip, f_created_date, f_creator_id, f_modifier_id, f_modified_date,
+            f_effective_date, f_expiry_date, f_mobile_status, f_mail_status, f_dept_id, f_region_id,
+            f_external_modified_date, f_entry_modified_date, f_origin, f_company_name, f_line_manager_id, f_manager_id
+        </trim>
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                #{item.fId,jdbcType=VARCHAR}, #{item.fUserName,jdbcType=VARCHAR},
+                #{item.fProductGroup,jdbcType=VARCHAR}, #{item.fStatus,jdbcType=BIT},
+                #{item.fPassword,jdbcType=VARCHAR}, #{item.fMobile,jdbcType=VARCHAR},
+                #{item.fEmployId,jdbcType=VARCHAR}, #{item.fShorthand,jdbcType=VARCHAR},
+                #{item.fRealName,jdbcType=VARCHAR}, #{item.fUcId,jdbcType=VARCHAR},
+                #{item.fGlobalName,jdbcType=VARCHAR}, #{item.fMail,jdbcType=VARCHAR}, #{item.fOrgId,jdbcType=VARCHAR},
+                #{item.fCompany,jdbcType=VARCHAR}, #{item.fType,jdbcType=BIT}, #{item.fJobLevel,jdbcType=VARCHAR},
+                #{item.fMurphyId,jdbcType=BIGINT}, #{item.fPsId,jdbcType=VARCHAR}, #{item.fAdDn,jdbcType=VARCHAR},
+                #{item.fDesc,jdbcType=VARCHAR}, #{item.fLastLoginDate,jdbcType=TIMESTAMP},
+                #{item.fLastLoginIp,jdbcType=VARCHAR}, #{item.fCreatedDate,jdbcType=TIMESTAMP},
+                #{item.fCreatorId,jdbcType=VARCHAR}, #{item.fModifierId,jdbcType=VARCHAR},
+                #{item.fModifiedDate,jdbcType=TIMESTAMP}, #{item.fEffectiveDate,jdbcType=TIMESTAMP},
+                #{item.fExpiryDate,jdbcType=TIMESTAMP}, #{item.fMobileStatus,jdbcType=BIT},
+                #{item.fMailStatus,jdbcType=BIT}, #{item.fDeptId,jdbcType=VARCHAR}, #{item.fRegionId,jdbcType=VARCHAR},
+                #{item.fExternalModifiedDate,jdbcType=TIMESTAMP}, #{item.fEntryModifiedDate,jdbcType=TIMESTAMP},
+                #{item.fOrigin,jdbcType=VARCHAR}, #{item.fCompanyName,jdbcType=VARCHAR},
+                #{item.fLineManagerId,jdbcType=VARCHAR}, #{item.fManagerId,jdbcType=VARCHAR}
+            </trim>
+        </foreach>
+    </insert>
+
+    <!--
+      根据主键批量更新数据库表中的记录
+    -->
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            update t_iam_user_base_info
+            <set>
+                <trim suffixOverrides=",">
+                    <if test="item.fId != null">
+                        f_id = #{item.fId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fUserName != null">
+                        f_user_name = #{item.fUserName,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fProductGroup != null">
+                        f_product_group = #{item.fProductGroup,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fStatus != null">
+                        f_status = #{item.fStatus,jdbcType=BIT},
+                    </if>
+                    <if test="item.fPassword != null">
+                        f_password = #{item.fPassword,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fMobile != null">
+                        f_mobile = #{item.fMobile,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fEmployId != null">
+                        f_employ_id = #{item.fEmployId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fShorthand != null">
+                        f_shorthand = #{item.fShorthand,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fRealName != null">
+                        f_real_name = #{item.fRealName,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fUcId != null">
+                        f_uc_id = #{item.fUcId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fGlobalName != null">
+                        f_global_name = #{item.fGlobalName,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fMail != null">
+                        f_mail = #{item.fMail,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fOrgId != null">
+                        f_org_id = #{item.fOrgId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fCompany != null">
+                        f_company = #{item.fCompany,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fType != null">
+                        f_type = #{item.fType,jdbcType=BIT},
+                    </if>
+                    <if test="item.fJobLevel != null">
+                        f_job_level = #{item.fJobLevel,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fMurphyId != null">
+                        f_murphy_id = #{item.fMurphyId,jdbcType=BIGINT},
+                    </if>
+                    <if test="item.fPsId != null">
+                        f_ps_id = #{item.fPsId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fAdDn != null">
+                        f_ad_dn = #{item.fAdDn,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fDesc != null">
+                        f_desc = #{item.fDesc,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fLastLoginDate != null">
+                        f_last_login_date = #{item.fLastLoginDate,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="item.fLastLoginIp != null">
+                        f_last_login_ip = #{item.fLastLoginIp,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fCreatedDate != null">
+                        f_created_date = #{item.fCreatedDate,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="item.fCreatorId != null">
+                        f_creator_id = #{item.fCreatorId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fModifierId != null">
+                        f_modifier_id = #{item.fModifierId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fModifiedDate != null">
+                        f_modified_date = #{item.fModifiedDate,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="item.fEffectiveDate != null">
+                        f_effective_date = #{item.fEffectiveDate,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="item.fExpiryDate != null">
+                        f_expiry_date = #{item.fExpiryDate,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="item.fMobileStatus != null">
+                        f_mobile_status = #{item.fMobileStatus,jdbcType=BIT},
+                    </if>
+                    <if test="item.fMailStatus != null">
+                        f_mail_status = #{item.fMailStatus,jdbcType=BIT},
+                    </if>
+                    <if test="item.fDeptId != null">
+                        f_dept_id = #{item.fDeptId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fRegionId != null">
+                        f_region_id = #{item.fRegionId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fExternalModifiedDate != null">
+                        f_external_modified_date = #{item.fExternalModifiedDate,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="item.fEntryModifiedDate != null">
+                        f_entry_modified_date = #{item.fEntryModifiedDate,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="item.fOrigin != null">
+                        f_origin = #{item.fOrigin,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fCompanyName != null">
+                        f_company_name = #{item.fCompanyName,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fLineManagerId != null">
+                        f_line_manager_id = #{item.fLineManagerId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="item.fManagerId != null">
+                        f_manager_id = #{item.fManagerId,jdbcType=VARCHAR}
+                    </if>
+                </trim>
+            </set>
+            <where>
+                <trim suffixOverrides=",">
+                    where f_id = #{item.fId,jdbcType=VARCHAR}
+                </trim>
+            </where>
+        </foreach>
+    </update>
+
+    <!--
+     使用给定的字段名定义Where子句
+   -->
+    <sql id="Identifiers_Array_Conditions">
+        <foreach collection="array" index="index" item="item" separator=" and ">
+            <if test="item == 'fId'">
+                f_id = #{fId,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fUserName'">
+                f_user_name = #{fUserName,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fProductGroup'">
+                f_product_group = #{fProductGroup,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fStatus'">
+                f_status = #{fStatus,jdbcType=BIT}
+            </if>
+            <if test="item == 'fPassword'">
+                f_password = #{fPassword,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fMobile'">
+                f_mobile = #{fMobile,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fEmployId'">
+                f_employ_id = #{fEmployId,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fShorthand'">
+                f_shorthand = #{fShorthand,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fRealName'">
+                f_real_name = #{fRealName,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fUcId'">
+                f_uc_id = #{fUcId,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fGlobalName'">
+                f_global_name = #{fGlobalName,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fMail'">
+                f_mail = #{fMail,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fOrgId'">
+                f_org_id = #{fOrgId,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fCompany'">
+                f_company = #{fCompany,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fType'">
+                f_type = #{fType,jdbcType=BIT}
+            </if>
+            <if test="item == 'fJobLevel'">
+                f_job_level = #{fJobLevel,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fMurphyId'">
+                f_murphy_id = #{fMurphyId,jdbcType=BIGINT}
+            </if>
+            <if test="item == 'fPsId'">
+                f_ps_id = #{fPsId,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fAdDn'">
+                f_ad_dn = #{fAdDn,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fDesc'">
+                f_desc = #{fDesc,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fLastLoginDate'">
+                f_last_login_date = #{fLastLoginDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="item == 'fLastLoginIp'">
+                f_last_login_ip = #{fLastLoginIp,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fCreatedDate'">
+                f_created_date = #{fCreatedDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="item == 'fCreatorId'">
+                f_creator_id = #{fCreatorId,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fModifierId'">
+                f_modifier_id = #{fModifierId,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fModifiedDate'">
+                f_modified_date = #{fModifiedDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="item == 'fEffectiveDate'">
+                f_effective_date = #{fEffectiveDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="item == 'fExpiryDate'">
+                f_expiry_date = #{fExpiryDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="item == 'fMobileStatus'">
+                f_mobile_status = #{fMobileStatus,jdbcType=BIT}
+            </if>
+            <if test="item == 'fMailStatus'">
+                f_mail_status = #{fMailStatus,jdbcType=BIT}
+            </if>
+            <if test="item == 'fDeptId'">
+                f_dept_id = #{fDeptId,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fRegionId'">
+                f_region_id = #{fRegionId,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fExternalModifiedDate'">
+                f_external_modified_date = #{fExternalModifiedDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="item == 'fEntryModifiedDate'">
+                f_entry_modified_date = #{fEntryModifiedDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="item == 'fOrigin'">
+                f_origin = #{fOrigin,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fCompanyName'">
+                f_company_name = #{fCompanyName,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fLineManagerId'">
+                f_line_manager_id = #{fLineManagerId,jdbcType=VARCHAR}
+            </if>
+            <if test="item == 'fManagerId'">
+                f_manager_id = #{fManagerId,jdbcType=VARCHAR}
+            </if>
+        </foreach>
+    </sql>
+
+    <!--
+      存在即更新否则插入
+    -->
+    <update id="upsert" parameterType="null.UserBaseInfoPo">
+        insert into t_iam_user_base_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            f_id, f_user_name, f_product_group, f_status, f_password, f_mobile, f_employ_id, f_shorthand, f_real_name,
+            f_uc_id, f_global_name, f_mail, f_org_id, f_company, f_type, f_job_level, f_murphy_id, f_ps_id, f_ad_dn,
+            f_desc, f_last_login_date, f_last_login_ip, f_created_date, f_creator_id, f_modifier_id, f_modified_date,
+            f_effective_date, f_expiry_date, f_mobile_status, f_mail_status, f_dept_id, f_region_id,
+            f_external_modified_date, f_entry_modified_date, f_origin, f_company_name, f_line_manager_id, f_manager_id
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{fId,jdbcType=VARCHAR}, #{fUserName,jdbcType=VARCHAR}, #{fProductGroup,jdbcType=VARCHAR},
+            #{fStatus,jdbcType=BIT}, #{fPassword,jdbcType=VARCHAR}, #{fMobile,jdbcType=VARCHAR},
+            #{fEmployId,jdbcType=VARCHAR}, #{fShorthand,jdbcType=VARCHAR}, #{fRealName,jdbcType=VARCHAR},
+            #{fUcId,jdbcType=VARCHAR}, #{fGlobalName,jdbcType=VARCHAR}, #{fMail,jdbcType=VARCHAR},
+            #{fOrgId,jdbcType=VARCHAR}, #{fCompany,jdbcType=VARCHAR}, #{fType,jdbcType=BIT},
+            #{fJobLevel,jdbcType=VARCHAR}, #{fMurphyId,jdbcType=BIGINT}, #{fPsId,jdbcType=VARCHAR},
+            #{fAdDn,jdbcType=VARCHAR}, #{fDesc,jdbcType=VARCHAR}, #{fLastLoginDate,jdbcType=TIMESTAMP},
+            #{fLastLoginIp,jdbcType=VARCHAR}, #{fCreatedDate,jdbcType=TIMESTAMP}, #{fCreatorId,jdbcType=VARCHAR},
+            #{fModifierId,jdbcType=VARCHAR}, #{fModifiedDate,jdbcType=TIMESTAMP}, #{fEffectiveDate,jdbcType=TIMESTAMP},
+            #{fExpiryDate,jdbcType=TIMESTAMP}, #{fMobileStatus,jdbcType=BIT}, #{fMailStatus,jdbcType=BIT},
+            #{fDeptId,jdbcType=VARCHAR}, #{fRegionId,jdbcType=VARCHAR}, #{fExternalModifiedDate,jdbcType=TIMESTAMP},
+            #{fEntryModifiedDate,jdbcType=TIMESTAMP}, #{fOrigin,jdbcType=VARCHAR}, #{fCompanyName,jdbcType=VARCHAR},
+            #{fLineManagerId,jdbcType=VARCHAR}, #{fManagerId,jdbcType=VARCHAR}
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            #{fId,jdbcType=VARCHAR}, #{fUserName,jdbcType=VARCHAR}, #{fProductGroup,jdbcType=VARCHAR},
+            #{fStatus,jdbcType=BIT}, #{fPassword,jdbcType=VARCHAR}, #{fMobile,jdbcType=VARCHAR},
+            #{fEmployId,jdbcType=VARCHAR}, #{fShorthand,jdbcType=VARCHAR}, #{fRealName,jdbcType=VARCHAR},
+            #{fUcId,jdbcType=VARCHAR}, #{fGlobalName,jdbcType=VARCHAR}, #{fMail,jdbcType=VARCHAR},
+            #{fOrgId,jdbcType=VARCHAR}, #{fCompany,jdbcType=VARCHAR}, #{fType,jdbcType=BIT},
+            #{fJobLevel,jdbcType=VARCHAR}, #{fMurphyId,jdbcType=BIGINT}, #{fPsId,jdbcType=VARCHAR},
+            #{fAdDn,jdbcType=VARCHAR}, #{fDesc,jdbcType=VARCHAR}, #{fLastLoginDate,jdbcType=TIMESTAMP},
+            #{fLastLoginIp,jdbcType=VARCHAR}, #{fCreatedDate,jdbcType=TIMESTAMP}, #{fCreatorId,jdbcType=VARCHAR},
+            #{fModifierId,jdbcType=VARCHAR}, #{fModifiedDate,jdbcType=TIMESTAMP}, #{fEffectiveDate,jdbcType=TIMESTAMP},
+            #{fExpiryDate,jdbcType=TIMESTAMP}, #{fMobileStatus,jdbcType=BIT}, #{fMailStatus,jdbcType=BIT},
+            #{fDeptId,jdbcType=VARCHAR}, #{fRegionId,jdbcType=VARCHAR}, #{fExternalModifiedDate,jdbcType=TIMESTAMP},
+            #{fEntryModifiedDate,jdbcType=TIMESTAMP}, #{fOrigin,jdbcType=VARCHAR}, #{fCompanyName,jdbcType=VARCHAR},
+            #{fLineManagerId,jdbcType=VARCHAR}, #{fManagerId,jdbcType=VARCHAR}
+        </trim>
+    </update>
+
+
+    <!--
+      带有空值检查的存在即更新否则插入
+    -->
+    <update id="upsertSelective" parameterType="null.UserBaseInfoPo">
+        insert into t_iam_user_base_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fId !=null ">
+                f_id,
+            </if>
+            <if test="fUserName !=null ">
+                f_user_name,
+            </if>
+            <if test="fProductGroup !=null ">
+                f_product_group,
+            </if>
+            <if test="fStatus !=null ">
+                f_status,
+            </if>
+            <if test="fPassword !=null ">
+                f_password,
+            </if>
+            <if test="fMobile !=null ">
+                f_mobile,
+            </if>
+            <if test="fEmployId !=null ">
+                f_employ_id,
+            </if>
+            <if test="fShorthand !=null ">
+                f_shorthand,
+            </if>
+            <if test="fRealName !=null ">
+                f_real_name,
+            </if>
+            <if test="fUcId !=null ">
+                f_uc_id,
+            </if>
+            <if test="fGlobalName !=null ">
+                f_global_name,
+            </if>
+            <if test="fMail !=null ">
+                f_mail,
+            </if>
+            <if test="fOrgId !=null ">
+                f_org_id,
+            </if>
+            <if test="fCompany !=null ">
+                f_company,
+            </if>
+            <if test="fType !=null ">
+                f_type,
+            </if>
+            <if test="fJobLevel !=null ">
+                f_job_level,
+            </if>
+            <if test="fMurphyId !=null ">
+                f_murphy_id,
+            </if>
+            <if test="fPsId !=null ">
+                f_ps_id,
+            </if>
+            <if test="fAdDn !=null ">
+                f_ad_dn,
+            </if>
+            <if test="fDesc !=null ">
+                f_desc,
+            </if>
+            <if test="fLastLoginDate !=null ">
+                f_last_login_date,
+            </if>
+            <if test="fLastLoginIp !=null ">
+                f_last_login_ip,
+            </if>
+            <if test="fCreatedDate !=null ">
+                f_created_date,
+            </if>
+            <if test="fCreatorId !=null ">
+                f_creator_id,
+            </if>
+            <if test="fModifierId !=null ">
+                f_modifier_id,
+            </if>
+            <if test="fModifiedDate !=null ">
+                f_modified_date,
+            </if>
+            <if test="fEffectiveDate !=null ">
+                f_effective_date,
+            </if>
+            <if test="fExpiryDate !=null ">
+                f_expiry_date,
+            </if>
+            <if test="fMobileStatus !=null ">
+                f_mobile_status,
+            </if>
+            <if test="fMailStatus !=null ">
+                f_mail_status,
+            </if>
+            <if test="fDeptId !=null ">
+                f_dept_id,
+            </if>
+            <if test="fRegionId !=null ">
+                f_region_id,
+            </if>
+            <if test="fExternalModifiedDate !=null ">
+                f_external_modified_date,
+            </if>
+            <if test="fEntryModifiedDate !=null ">
+                f_entry_modified_date,
+            </if>
+            <if test="fOrigin !=null ">
+                f_origin,
+            </if>
+            <if test="fCompanyName !=null ">
+                f_company_name,
+            </if>
+            <if test="fLineManagerId !=null ">
+                f_line_manager_id,
+            </if>
+            <if test="fManagerId !=null ">
+                f_manager_id
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fId !=null ">
+                f_id = #{fId,jdbcType=VARCHAR},
+            </if>
+            <if test="fUserName !=null ">
+                f_user_name = #{fUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="fProductGroup !=null ">
+                f_product_group = #{fProductGroup,jdbcType=VARCHAR},
+            </if>
+            <if test="fStatus !=null ">
+                f_status = #{fStatus,jdbcType=BIT},
+            </if>
+            <if test="fPassword !=null ">
+                f_password = #{fPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="fMobile !=null ">
+                f_mobile = #{fMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="fEmployId !=null ">
+                f_employ_id = #{fEmployId,jdbcType=VARCHAR},
+            </if>
+            <if test="fShorthand !=null ">
+                f_shorthand = #{fShorthand,jdbcType=VARCHAR},
+            </if>
+            <if test="fRealName !=null ">
+                f_real_name = #{fRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="fUcId !=null ">
+                f_uc_id = #{fUcId,jdbcType=VARCHAR},
+            </if>
+            <if test="fGlobalName !=null ">
+                f_global_name = #{fGlobalName,jdbcType=VARCHAR},
+            </if>
+            <if test="fMail !=null ">
+                f_mail = #{fMail,jdbcType=VARCHAR},
+            </if>
+            <if test="fOrgId !=null ">
+                f_org_id = #{fOrgId,jdbcType=VARCHAR},
+            </if>
+            <if test="fCompany !=null ">
+                f_company = #{fCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="fType !=null ">
+                f_type = #{fType,jdbcType=BIT},
+            </if>
+            <if test="fJobLevel !=null ">
+                f_job_level = #{fJobLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="fMurphyId !=null ">
+                f_murphy_id = #{fMurphyId,jdbcType=BIGINT},
+            </if>
+            <if test="fPsId !=null ">
+                f_ps_id = #{fPsId,jdbcType=VARCHAR},
+            </if>
+            <if test="fAdDn !=null ">
+                f_ad_dn = #{fAdDn,jdbcType=VARCHAR},
+            </if>
+            <if test="fDesc !=null ">
+                f_desc = #{fDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="fLastLoginDate !=null ">
+                f_last_login_date = #{fLastLoginDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fLastLoginIp !=null ">
+                f_last_login_ip = #{fLastLoginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="fCreatedDate !=null ">
+                f_created_date = #{fCreatedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fCreatorId !=null ">
+                f_creator_id = #{fCreatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="fModifierId !=null ">
+                f_modifier_id = #{fModifierId,jdbcType=VARCHAR},
+            </if>
+            <if test="fModifiedDate !=null ">
+                f_modified_date = #{fModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fEffectiveDate !=null ">
+                f_effective_date = #{fEffectiveDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fExpiryDate !=null ">
+                f_expiry_date = #{fExpiryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fMobileStatus !=null ">
+                f_mobile_status = #{fMobileStatus,jdbcType=BIT},
+            </if>
+            <if test="fMailStatus !=null ">
+                f_mail_status = #{fMailStatus,jdbcType=BIT},
+            </if>
+            <if test="fDeptId !=null ">
+                f_dept_id = #{fDeptId,jdbcType=VARCHAR},
+            </if>
+            <if test="fRegionId !=null ">
+                f_region_id = #{fRegionId,jdbcType=VARCHAR},
+            </if>
+            <if test="fExternalModifiedDate !=null ">
+                f_external_modified_date = #{fExternalModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fEntryModifiedDate !=null ">
+                f_entry_modified_date = #{fEntryModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fOrigin !=null ">
+                f_origin = #{fOrigin,jdbcType=VARCHAR},
+            </if>
+            <if test="fCompanyName !=null ">
+                f_company_name = #{fCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="fLineManagerId !=null ">
+                f_line_manager_id = #{fLineManagerId,jdbcType=VARCHAR},
+            </if>
+            <if test="fManagerId !=null ">
+                f_manager_id = #{fManagerId,jdbcType=VARCHAR}
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="fId !=null ">
+                f_id = #{fId,jdbcType=VARCHAR},
+            </if>
+            <if test="fUserName !=null ">
+                f_user_name = #{fUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="fProductGroup !=null ">
+                f_product_group = #{fProductGroup,jdbcType=VARCHAR},
+            </if>
+            <if test="fStatus !=null ">
+                f_status = #{fStatus,jdbcType=BIT},
+            </if>
+            <if test="fPassword !=null ">
+                f_password = #{fPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="fMobile !=null ">
+                f_mobile = #{fMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="fEmployId !=null ">
+                f_employ_id = #{fEmployId,jdbcType=VARCHAR},
+            </if>
+            <if test="fShorthand !=null ">
+                f_shorthand = #{fShorthand,jdbcType=VARCHAR},
+            </if>
+            <if test="fRealName !=null ">
+                f_real_name = #{fRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="fUcId !=null ">
+                f_uc_id = #{fUcId,jdbcType=VARCHAR},
+            </if>
+            <if test="fGlobalName !=null ">
+                f_global_name = #{fGlobalName,jdbcType=VARCHAR},
+            </if>
+            <if test="fMail !=null ">
+                f_mail = #{fMail,jdbcType=VARCHAR},
+            </if>
+            <if test="fOrgId !=null ">
+                f_org_id = #{fOrgId,jdbcType=VARCHAR},
+            </if>
+            <if test="fCompany !=null ">
+                f_company = #{fCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="fType !=null ">
+                f_type = #{fType,jdbcType=BIT},
+            </if>
+            <if test="fJobLevel !=null ">
+                f_job_level = #{fJobLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="fMurphyId !=null ">
+                f_murphy_id = #{fMurphyId,jdbcType=BIGINT},
+            </if>
+            <if test="fPsId !=null ">
+                f_ps_id = #{fPsId,jdbcType=VARCHAR},
+            </if>
+            <if test="fAdDn !=null ">
+                f_ad_dn = #{fAdDn,jdbcType=VARCHAR},
+            </if>
+            <if test="fDesc !=null ">
+                f_desc = #{fDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="fLastLoginDate !=null ">
+                f_last_login_date = #{fLastLoginDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fLastLoginIp !=null ">
+                f_last_login_ip = #{fLastLoginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="fCreatedDate !=null ">
+                f_created_date = #{fCreatedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fCreatorId !=null ">
+                f_creator_id = #{fCreatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="fModifierId !=null ">
+                f_modifier_id = #{fModifierId,jdbcType=VARCHAR},
+            </if>
+            <if test="fModifiedDate !=null ">
+                f_modified_date = #{fModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fEffectiveDate !=null ">
+                f_effective_date = #{fEffectiveDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fExpiryDate !=null ">
+                f_expiry_date = #{fExpiryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fMobileStatus !=null ">
+                f_mobile_status = #{fMobileStatus,jdbcType=BIT},
+            </if>
+            <if test="fMailStatus !=null ">
+                f_mail_status = #{fMailStatus,jdbcType=BIT},
+            </if>
+            <if test="fDeptId !=null ">
+                f_dept_id = #{fDeptId,jdbcType=VARCHAR},
+            </if>
+            <if test="fRegionId !=null ">
+                f_region_id = #{fRegionId,jdbcType=VARCHAR},
+            </if>
+            <if test="fExternalModifiedDate !=null ">
+                f_external_modified_date = #{fExternalModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fEntryModifiedDate !=null ">
+                f_entry_modified_date = #{fEntryModifiedDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fOrigin !=null ">
+                f_origin = #{fOrigin,jdbcType=VARCHAR},
+            </if>
+            <if test="fCompanyName !=null ">
+                f_company_name = #{fCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="fLineManagerId !=null ">
+                f_line_manager_id = #{fLineManagerId,jdbcType=VARCHAR},
+            </if>
+            <if test="fManagerId !=null ">
+                f_manager_id = #{fManagerId,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </update>
+
+    <select id="query" resultMap="BaseResultMap" parameterType="null.UserBaseInfoPo">
+        select
+        <include refid="Base_Column_List"/>
+        from t_iam_user_base_info
+        <where>
+            <include refid="Base_Query_Where"></include>
+        </where>
+    </select>
+
+    <select id="queryTotal" resultType="long">
+        select count(*) from t_iam_user_base_info
+    </select>
+
+
+    <delete id="deleteBatch">
+        delete from t_iam_user_base_info where f_id in
+        <foreach item="fId" collection="list" open="(" separator="," close=")">
+            #{fId}
+        </foreach>
+    </delete>
+
+</mapper>

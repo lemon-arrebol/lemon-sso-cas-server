@@ -1,0 +1,265 @@
+lemon:
+  quer-user-sql: select * from t_iam_user_base_info where f_user_name = ?
+  ticket:
+    tgtSuffix: tgt
+    pgtSuffix: pgt
+    ptSuffix: pt
+    stSuffix: st
+
+#pagehelper:
+#  offsetAsPageNum: true
+#  pageSizeZero: true
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  rowBoundsWithCount: true
+#  params: pageNum=pageHelperStart;pageSize=pageHelperRows;count=countSql
+#
+#mybatis:
+#  # 定义mapper.xml的路径
+#  mapper-locations: classpath:mapper/*.xml
+#  # 起别名。可省略写mybatis的xml中的resultType的全路径
+#  type-aliases-package: com.lemon.cas.entity
+#
+#mapper:
+#  # insertSelective 和 updateByPrimaryKeySelective 中，是否判断字符串类型 !=''。
+#  notEmpty: true
+#  identity: MYSQL
+#  mappers: com.lemon.cas.base.mapper.BaseMapper
+
+logging:
+  level:
+    com.lemon: debug
+    org.jasig.cas: debug
+
+cas:
+  # 关闭https限制
+  tgc:
+    secure: false
+
+  # 配置允许访问 CAS Server 的服务即 Cas Client Management
+  # 从 JSON 读取
+#  serviceRegistry:
+#    initFromJson: true
+
+  serviceRegistry:
+    jpa:
+      leakThreshold: 10
+      dialect: org.hibernate.dialect.MySQL5Dialect
+      pool:
+        maxWait: 2000
+        maxSize: 18
+        timeoutMillis: 1000
+        minSize: 6
+        suspension: false
+      failFastTimeout: 1
+      healthQuery:
+      isolateInternalQueries: false
+      url: jdbc:mysql://localhost:3306/cas?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+      user: root
+      password: mcdull
+      autocommit: true
+      driverClass: com.mysql.jdbc.Driver
+      idleTimeout: 5000
+      batchSize: 1
+      # 设置配置的服务，一直都有，不会给清除掉 ， 第一次使用，需要配置为 create-drop，后续改为 update
+      # create-drop 重启cas服务的时候，就会给干掉
+      # create 没有表就创建，有就不创建
+      # none 一直都有
+      # update 更新
+      ddlAuto: update
+  ticket:
+    registry:
+      redis:
+        database: 3
+        host: localhost
+        port: 6379
+        timeout: 2000
+        use-ssl: false
+  # CAS Authentication Credentials
+  authn:
+    accept:
+      name: Static Credentials
+      users: casuser::Mellon
+  # CAS View Settings
+  view:
+    cas2:
+      v3ForwardCompatible: true
+
+management:
+  endpoint:
+    restart:
+      enabled: false
+    shutdown:
+      enabled: false
+  endpoints:
+    # CAS Web Application Endpoints Security
+    enabled-by-default: false
+    jmx:
+      exposure:
+        exclude: '*'
+    web:
+      base-path: /actuator
+      exposure:
+        include: info,health,status,configurationMetadata
+  health:
+    defaults:
+      # turn off health indicators by default
+      enabled: false
+    memoryHealthIndicator:
+      # Define health indicator behavior (requires cas-server-core-monitor)
+      enabled: true
+    ping:
+      # Define a default that doesn't require module /cas/actuator/health/ping serves as status
+      enabled: true
+    status:
+      # Define a CAS-specific "WARN" status code and its order
+      order: WARN,DOWN,OUT_OF_SERVICE,UNKNOWN,UP
+  # CAS Metrics Configuration
+  metrics:
+    enable:
+      logback: true
+      process:
+        cpu: true
+        files: true
+        start:
+          time: true
+        uptime: true
+      system:
+        cpu: true
+    export:
+      atlas:
+        enabled: false
+      datadog:
+        enabled: false
+      ganglia:
+        enabled: false
+      graphite:
+        enabled: false
+      influx:
+        enabled: false
+      jmx:
+        enabled: false
+      newrelic:
+        enabled: false
+      prometheus:
+        enabled: false
+      signalfx:
+        enabled: false
+      simple:
+        enabled: true
+      statsd:
+        enabled: false
+      wavefront:
+        enabled: false
+    web:
+      server:
+        auto-time-requests: true
+  server:
+    add-application-context-header: false
+
+server:
+  compression:
+    enabled: true
+    mime-types: application/javascript,application/json,application/xml,text/html,text/xml,text/plain
+  connection-timeout: PT20S
+  error:
+    include-stacktrace: ALWAYS
+  forward-headers-strategy: NATIVE
+  max-http-header-size: 2097152
+  port: 8443
+  # CAS Web Application Session Configuration
+  servlet:
+    context-parameters:
+      # CAS Log4j Configuration logging.config=file:/etc/cas/log4j2.xml
+      isLog4jAutoInitializationDisabled: true
+    context-path: /cas
+    session:
+      cookie:
+        http-only: true
+      timeout: PT30S
+      tracking-modes: COOKIE
+
+  # CAS Web Application Embedded Server SSL Configuration
+  ssl:
+    enabled: true
+    key-password: changeit
+    key-store: file:/etc/cas/thekeystore
+    key-store-password: changeit
+
+  # CAS Web Application Embedded Tomcat Configuration
+  tomcat:
+    accesslog:
+      enabled: true
+      pattern: '%t %a "%r" %s (%D ms)'
+      suffix: .log
+    additional-tld-skip-patterns: '*.jar'
+    basedir: build/tomcat
+    max-http-post-size: 2097152
+    max-threads: 200
+    min-spare-threads: 10
+    port-header: X-Forwarded-Port
+    protocol-header: X-Forwarded-Proto
+    protocol-header-https-value: https
+    remote-ip-header: X-FORWARDED-FOR
+    uri-encoding: UTF-8
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/iam_db?characterEncoding=utf8
+    username: root
+    password: mcdull
+    # hikari 连接池配置
+    hikari:
+      auto-commit: true
+      connection-test-query: SELECT 1
+      connection-timeout: 15000
+      idle-timeout: 30000
+      max-lifetime: 900000
+      maximum-pool-size: 15
+      minimum-idle: 5
+      pool-name: DatebookHikariCP
+
+  # CAS AspectJ Configuration
+  aop:
+    auto: true
+    proxy-target-class: true
+  cloud:
+    bus:
+      # CAS Cloud Bus Configuration
+      enabled: false
+    config:
+      # Indicates that systemPropertiesOverride can be used. Set to false to prevent users from changing the default accidentally. Default true.
+      allow-override: true
+      # When allowOverride is true, external properties should take lowest priority, and not override any existing property sources (including local config files).
+      override-none: false
+      # External properties should override system properties.
+      override-system-properties: false
+    discovery:
+      client:
+        composite-indicator:
+          enabled: false
+  # CAS Web Application Http Encoding Configuration
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  # CAS Web Application JMX/Spring Configuration
+  jmx:
+    enabled: false
+  # Allow configuration classes to override bean definitions from Spring Boot
+  main:
+    allow-bean-definition-overriding: true
+    lazy-initialization: false
+  security:
+    user:
+      # Endpoint Security Basic Authentication
+      name: casuser
+  # CAS Thymeleaf View Configuration
+  thymeleaf:
+    cache: true
+    encoding: UTF-8
+    mode: HTML
+    template-resolver-order: 100

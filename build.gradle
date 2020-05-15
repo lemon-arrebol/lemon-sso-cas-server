@@ -1,0 +1,133 @@
+/*
+ * 相当于maven中的父maven配置
+ * buildScript块的repositories主要是为了Gradle脚本自身的执行，获取脚本依赖插件。
+ * buildscript中的声明是gradle脚本自身需要使用的资源。可以声明的资源包括依赖项、第三方插件、maven仓库地址等。
+ * gradle在执行脚本时，会优先执行buildscript代码块中的内容，然后才会执行剩余的build脚本。
+ */
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url "https://repo.spring.io/libs-milestone" }
+        maven { url "https://repo.spring.io/libs-snapshot" }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    // 用来打包
+    dependencies {
+        classpath "de.undercouch:gradle-download-task:${project.gradleDownloadTaskVersion}"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${project.springBootVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:${project.gradleDependencyManagementVersion}"
+        classpath "gradle.plugin.com.google.cloud.tools:jib-gradle-plugin:${project.jibVersion}"
+        classpath "io.freefair.gradle:maven-plugin:${project.gradleMavenPluginVersion}"
+        classpath "io.franzbecker:gradle-lombok:${project.gradleLombokVersion}"
+    }
+}
+
+// ================== 导入使用的插件 ==================
+// 从 Gradle 官方的插件仓库https://plugins.gradle.org/m2/下载的
+plugins {
+    id 'war'
+    id 'java'
+    id 'idea'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    maven { url "https://build.shibboleth.net/nexus/content/repositories/releases/" }
+    maven { url "https://repo.spring.io/milestone/" }
+    maven { url "https://repo.spring.io/snapshot/" }
+    maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+}
+
+// 从第三方下载的插件
+apply plugin: 'org.springframework.boot'
+// 应用依赖管理插件，自动给Spring依赖的第三方模块追加版本号
+apply plugin: 'io.spring.dependency-management'
+// ================== 导入使用的插件 ==================
+
+// jar包的group ，version配置
+//group 'com.lemon'
+//version '1.0-SNAPSHOT'
+
+// jdk编译版本
+sourceCompatibility = 1.11
+
+/*
+ * allprojects声明的却是所有module所需要使用的资源，就是说你的每个module都需要用同一个第三库的时候，可以在allprojects里面声明。
+ */
+allprojects {
+
+}
+
+// subprojects是对所有Child Project的配置
+subprojects {
+
+}
+
+dependencies {
+    // compile 编译范围依赖在所有的 classpath 中可用，同时它们也会被打包
+    // runtime runtime依赖在运行和测试系统的时候需要，但在编译的时候不需要
+    // testCompile 测试期编译需要的附加依赖
+    // testRuntime 测试运行期需要
+    // ================== by developer lemon apereo common ==================
+    compile "org.projectlombok:lombok:${project.lombokVersion}"
+    // Spring依赖的第三方模块(2.1.6依赖的是3.8.1)
+    compile("org.apache.commons:commons-lang3")
+
+    // ================== by developer lemon apereo cas ==================
+//    compile "org.apereo.cas:cas-server-webapp:${project.casServerVersion}"
+//    compile "org.apereo.cas:cas-server-webapp${project.appServer}:${project.casServerVersion}"
+//    compile "org.apereo.cas:cas-server-core-api:${project.casServerVersion}"
+//    compile "org.apereo.cas:cas-server-core-tickets-api:${project.casServerVersion}"
+//    compile "org.apereo.cas:cas-server-core-authentication-api:${project.casServerVersion}"
+//    compile "org.apereo.cas:cas-server-core-configuration-api:${project.casServerVersion}"
+//    compile "org.apereo.cas:cas-server-core-cookie-api:${project.casServerVersion}"
+//    compile "org.apereo.cas:cas-server-support-oauth:${project.casServerVersion}"
+//    compile "org.apereo.cas:cas-server-support-oauth-webflow:${project.casServerVersion}"
+//    compile "org.apereo.cas:cas-server-support-jdbc:${project.casServerVersion}"
+//    compile "org.apereo.cas:cas-server-support-redis-ticket-registry:${project.casServerVersion}"
+    compile "mysql:mysql-connector-java:8.0.16"
+
+    compile("org.springframework.boot:spring-boot-starter-jdbc:${project.springBootVersion}") {
+        exclude group: 'org.apache.logging.log4j'
+    }
+
+    compile("org.apereo.cas:cas-server-support-redis-ticket-registry:${project.casServerVersion}") {
+        exclude group: 'org.codehaus.groovy'
+        exclude group: 'org.apache.logging.log4j'
+    }
+
+    // Service 即注册的 Cas Client 查询，验证请求的 Cas Client 是是否合法
+    compile("org.apereo.cas:cas-server-support-jpa-service-registry:${project.casServerVersion}") {
+        exclude group: 'org.codehaus.groovy'
+    }
+
+    // 配置 mybatis
+//    compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:${project.mybatisSpringBootVersion}")
+
+    // 配置 通用mapper
+//    compile("tk.mybatis:mapper-spring-boot-starter:${project.mapperSpringBootVersion}") {
+//        exclude group: 'org.apache.logging.log4j'
+//        exclude group: 'javax.persistence'
+//    }
+
+//    compile "com.github.pagehelper:pagehelper-spring-boot-starter:${project.pagehelperSpringBootVersion}"
+
+    // 添加对log4j starter的依赖。
+    compile "org.springframework.boot:spring-boot-starter-log4j:${project.springBootLog4jVersion}"
+
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+idea {
+    module {
+        downloadJavadoc = false
+        downloadSources = true
+    }
+}

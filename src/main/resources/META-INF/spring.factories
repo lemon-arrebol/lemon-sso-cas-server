@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.lemon.cas.config.TicketsConfiguration,\
+  com.lemon.cas.config.CasServiceTicketIdGeneratorsConfiguration,\
+  com.lemon.cas.config.CustomAuthenticationEventExecutionPlanConfiguration,\
+  com.lemon.cas.config.CustomAuthenticationWebflowConfiguration
+
