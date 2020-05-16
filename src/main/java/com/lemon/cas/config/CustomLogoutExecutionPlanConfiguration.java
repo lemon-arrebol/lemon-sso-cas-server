@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author houjuntao
+ * @author lemon
  * @version 1.0
  * @description: TODO
- * @date Create by houjuntao on 2020-05-16 15:02
+ * @date Create by lemon on 2020-05-16 15:02
  */
 @Slf4j
 @Configuration("customLogoutExecutionPlanConfiguration")

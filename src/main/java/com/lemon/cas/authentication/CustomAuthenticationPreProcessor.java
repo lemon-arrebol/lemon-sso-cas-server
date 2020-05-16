@@ -11,7 +11,7 @@ import org.apereo.cas.authentication.Credential;
 import org.springframework.beans.factory.DisposableBean;
 
 /**
- * @author houjuntao
+ * @author lemon
  * @description
  * @date 2020-05-16 11:49
  */

@@ -3,7 +3,7 @@ package com.lemon.cas.exception.auth.login;
 import javax.security.auth.login.AccountException;
 
 /**
- * @author houjuntao
+ * @author lemon
  * @description 账号存在多个
  * @date 2020-05-16 11:38
  */

@@ -38,7 +38,7 @@ public class UserBaseInfoServiceImpl implements UserBaseInfoService {
      * @param userName
      * @return com.lemon.cas.entity.UserBaseInfoEntity
      * @description 登录页面异常信息展示 authenticationFailure. + e.getClass().getSimpleName()
-     * @author houjuntao
+     * @author lemon
      * @date 2020-05-16 11:30
      */
     @Override

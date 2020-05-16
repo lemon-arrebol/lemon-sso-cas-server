@@ -5,7 +5,7 @@ import org.apereo.cas.logout.LogoutExecutionPlan;
 import org.apereo.cas.logout.LogoutExecutionPlanConfigurer;
 
 /**
- * @author houjuntao
+ * @author lemon
  * @description
  * @date 2020-05-16 14:54
  */

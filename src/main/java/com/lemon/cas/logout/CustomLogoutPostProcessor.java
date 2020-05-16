@@ -6,11 +6,11 @@ import org.apereo.cas.ticket.TicketGrantingTicket;
 import org.springframework.core.Ordered;
 
 /**
- * @author houjuntao
+ * @author lemon
  * @version 1.0
  * @description: 自定义退出后处理器
  * {@link org.apereo.cas.logout.DefaultLogoutManager} 调用
- * @date Create by houjuntao on 2020-05-16 14:58
+ * @date Create by lemon on 2020-05-16 14:58
  */
 @Slf4j
 public class CustomLogoutPostProcessor implements LogoutPostProcessor {

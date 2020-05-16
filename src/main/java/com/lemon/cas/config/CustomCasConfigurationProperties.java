@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import java.io.Serializable;
 
 /**
- * @author houjuntao
+ * @author lemon
  * @description
  * @date 2020-05-16 13:23
  */

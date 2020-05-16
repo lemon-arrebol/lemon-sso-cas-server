@@ -14,7 +14,7 @@ public interface UserBaseInfoService {
      * @param userName
      * @return com.lemon.cas.entity.UserBaseInfoEntity
      * @description
-     * @author houjuntao
+     * @author lemon
      * @date 2020-05-16 08:23
      */
     UserBaseInfoEntity queryByUserName(String userName) throws AccountException;
