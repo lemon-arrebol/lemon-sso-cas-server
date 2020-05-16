@@ -1,6 +1,8 @@
 package com.lemon.cas.config;
 
-import com.lemon.cas.handler.CustomAuthenticationHandler;
+import com.lemon.cas.authentication.CustomAuthenticationHandler;
+import com.lemon.cas.authentication.CustomAuthenticationPostProcessor;
+import com.lemon.cas.authentication.CustomAuthenticationPreProcessor;
 import com.lemon.cas.service.impl.UserBaseInfoServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -61,5 +63,7 @@ public class CustomAuthenticationEventExecutionPlanConfiguration implements Auth
         }
 
         plan.registerAuthenticationHandler(this.customAuthenticationHandler());
+        plan.registerAuthenticationPreProcessor(new CustomAuthenticationPreProcessor());
+        plan.registerAuthenticationPostProcessor(new CustomAuthenticationPostProcessor());
     }
 }

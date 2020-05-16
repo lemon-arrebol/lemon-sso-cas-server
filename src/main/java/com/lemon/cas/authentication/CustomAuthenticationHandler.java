@@ -1,4 +1,4 @@
-package com.lemon.cas.handler;
+package com.lemon.cas.authentication;
 
 import com.lemon.cas.credential.CustomCredential;
 import com.lemon.cas.entity.UserBaseInfoEntity;
@@ -75,7 +75,7 @@ public class CustomAuthenticationHandler extends AbstractPreAndPostProcessingAut
         transformUsername(userPass);
         transformPassword(userPass);
 
-        UserBaseInfoEntity userBaseInfoEntity = this.userBaseInfoService.selectByUserName(userPass.getUsername());
+        UserBaseInfoEntity userBaseInfoEntity = this.userBaseInfoService.queryByUserName(userPass.getUsername());
 
         if (!this.matches(userPass.getPassword(), userBaseInfoEntity.getPassword())) {
             throw new FailedLoginException();

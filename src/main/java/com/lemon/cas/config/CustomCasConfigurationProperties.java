@@ -9,10 +9,9 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import java.io.Serializable;
 
 /**
- * This is {@link CustomCasConfigurationProperties}.
- *
- * @author Misagh Moayyed
- * @since 5.0.0
+ * @author houjuntao
+ * @description
+ * @date 2020-05-16 13:23
  */
 @Getter
 @Setter

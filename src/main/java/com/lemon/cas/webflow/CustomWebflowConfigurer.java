@@ -97,26 +97,4 @@ public class CustomWebflowConfigurer extends DefaultLoginWebflowConfigurer {
         }
 
     }
-//
-//    /**
-//     * @param flow
-//     * @return void
-//     * @description 绑定自定义的Credential信息
-//     * @author lemon
-//     * @date 2020-05-13 21:24
-//     */
-//    protected void bindCredential(Flow flow) {
-//        // 重写绑定自定义credential
-//        // 重写绑定自定义credential
-//        super.createFlowVariable(flow, CasWebflowConstants.VAR_ID_CREDENTIAL, CustomCredential.class);
-//
-//        // 登录页绑定新参数
-//        final ViewState state = (ViewState) flow.getState(CasWebflowConstants.STATE_ID_VIEW_LOGIN_FORM);
-//        final BinderConfiguration binderConfiguration = super.getViewStateBinderConfiguration(state);
-//        // 由于用户名以及密码已经绑定，所以只需对新加系统参数绑定即可
-//        // 字段名，转换器，是否必须字段
-//        binderConfiguration.addBinding(new BinderConfiguration.Binding("email", null, false));
-//        binderConfiguration.addBinding(new BinderConfiguration.Binding("telephone", null, false));
-//
-//    }
 }

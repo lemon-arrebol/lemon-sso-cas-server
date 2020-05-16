@@ -53,3 +53,15 @@ java.lang.IllegalAccessException: class io.netty.util.internal.PlatformDependent
 
 ## log4j-slf4j-impl cannot be present with log4j-to-slf4j
 删除 log4j-to-slf4j
+
+## SLO
+[CAS-5.2.6单点登录-退出原理](https://blog.csdn.net/weixin_43549578/article/details/91908960)
+org.apereo.cas.configuration.model.core.logout.LogoutProperties
+org.apereo.cas.configuration.model.core.slo.SloProperties
+org.apereo.cas.logout.config.CasCoreLogoutConfiguration
+org.apereo.cas.services.RegisteredServiceLogoutType 定义退出类型
+
+org.apereo.cas.web.flow.logout.TerminateSessionAction#terminate
+org.apereo.cas.DefaultCentralAuthenticationService#destroyTicketGrantingTicket
+org.apereo.cas.logout.DefaultLogoutManager#performLogout
+org.apereo.cas.web.flow.logout.LogoutAction#doInternalExecute

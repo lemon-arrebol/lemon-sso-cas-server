@@ -1,5 +1,5 @@
 lemon:
-  quer-user-sql: select f_user_name, f_password from user_base_info where f_user_name = ?
+  quer-user-sql: select f_user_name as userName, f_password as password from user_base_info where f_user_name = ?
   ticket:
     tgtSuffix: tgt
     pgtSuffix: pgt
@@ -33,6 +33,24 @@ logging:
     org.jasig.cas: debug
 
 cas:
+  # 配置单点登出
+  logout:
+    # 允许登出后跳转到指定页面
+    followServiceRedirects: true
+    # 在退出时是否需要，确认退出提示：true 弹出确认提示框 ，false 直接退出
+    confirmLogout: true
+    # 跳转到指定页面需要的参数名，默认是 service
+    redirectParameter: service
+    # 登出后需要跳转到的地址,如果配置该参数,service将无效
+    #    redirectUrl: https://www.taobao.com
+    # 是否移除子系统的票据
+    removeDescendantTickets: true
+  slo:
+    # 禁用单点登出,默认是false不禁止。配置了cas.slo.disabled = true 将禁用单点登出调用登出将无效
+    disabled: false
+    # 默认异步通知客户端,清除session
+    asynchronous: true
+
   # 关闭https限制
   tgc:
     secure: false

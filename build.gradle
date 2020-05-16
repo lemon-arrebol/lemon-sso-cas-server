@@ -58,8 +58,14 @@ apply from: rootProject.file("gradle/dependencies.gradle")
 //group 'com.lemon'
 //version '1.0-SNAPSHOT'
 
-// jdk编译版本
+/*
+ * sourceCompatibility关系到你使用到的Java语法特性及库
+ * sourceCompatibility不能比targetCompatibility大
+ * targetCompatibility不能比目标客户端运行环境的JavaVersion大
+ * targetCompatibility不能比当前Gradle使用的JavaVersion大
+ */
 sourceCompatibility = 1.11
+targetCompatibility = 1.11
 
 configurations {
     // 编译期排除appcompat-v7
@@ -124,10 +130,10 @@ dependencies {
 
     compile "org.apereo.cas:cas-server-support-actions:${project.casServerVersion}"
     // Service 即注册的 Cas Client 查询，验证请求的 Cas Client 是是否合法
-//    compile "org.apereo.cas:cas-server-support-jpa-service-registry:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-support-jpa-service-registry:${project.casServerVersion}"
     compile "org.apereo.cas:cas-server-support-person-directory:${project.casServerVersion}"
     // Conflicting module versions. Module [groovy-datetime is loaded in version 3.0.0-rc-1 and you are trying to load version 2.5.8
-//    compile "org.apereo.cas:cas-server-support-redis-ticket-registry:${project.casServerVersion}"
+    compile "org.apereo.cas:cas-server-support-redis-ticket-registry:${project.casServerVersion}"
     compile "org.apereo.cas:cas-server-support-themes:${project.casServerVersion}"
     compile "org.apereo.cas:cas-server-support-validation:${project.casServerVersion}"
     compile "org.apereo.cas:cas-server-support-pm-webflow:${project.casServerVersion}"
